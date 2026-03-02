@@ -170,11 +170,14 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse) {
           ...error,
           name: error.name,
           message: error.message,
-          cause: {
-            message: cause.message,
-            stack: cause.stack,
-            code: cause.code,
-          },
+          cause:
+            cause && typeof cause === 'object'
+              ? {
+                  message: (cause as any).message,
+                  stack: (cause as any).stack,
+                  code: (cause as any).code,
+                }
+              : null,
         });
       }
     }
