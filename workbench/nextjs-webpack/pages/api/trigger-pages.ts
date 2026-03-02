@@ -23,9 +23,6 @@ export default async function handler(
 async function handlePost(req: NextApiRequest, res: NextApiResponse) {
   const workflowFile =
     (req.query.workflowFile as string) || 'workflows/99_e2e.ts';
-  if (!workflowFile) {
-    return res.status(400).send('No workflowFile query parameter provided');
-  }
   const workflows = allWorkflows[workflowFile as keyof typeof allWorkflows];
   if (!workflows) {
     return res.status(400).send(`Workflow file "${workflowFile}" not found`);
