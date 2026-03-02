@@ -59,7 +59,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
     return res.status(400).send(`Workflow "${workflowFn}" not found`);
   }
 
-  let args: any[] = [];
+  let args: unknown[] = [];
 
   // Args from query string
   const argsParam = req.query.args as string | undefined;
