@@ -40,9 +40,6 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
   const workflowFn = (typeof rawWorkflowFn === 'string' && rawWorkflowFn.trim() !== '')
     ? rawWorkflowFn.trim()
     : 'simple';
-  if (!workflowFn) {
-    return res.status(400).send('No workflow query parameter provided');
-  }
 
   // Handle static method lookups (e.g., "Calculator.calculate")
   let workflow: unknown;
